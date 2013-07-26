@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Example</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+</head>
+<body ng-app="guardpost">
+
+  <form ng-cloak name="example">
+    <input placeholder="Email" type="email" name="email" ng-model="email" guardpost-check>
+    <span ng-show="example.email.$error.guardpostCheck && !example.email.didYouMean">Uh oh, that's not valid.</span>
+    <span ng-show="example.email.$error.guardpostCheck && example.email.didYouMean">Wait, did you mean <i>{{example.email.didYouMean}}</i>?</span>
+    <span ng-hide="example.email.$error.guardpostCheck || example.email.$pristine">Great!</span>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.js"></script>
+  <script src="angular_guardpost.js"></script>
+  <script>
+    guardpost.value("mailgunKey", "40733976039a7f5c8193eea7618d0313aababe20");
+  </script>
+
+</body>
+</html>
