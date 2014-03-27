@@ -20,13 +20,10 @@ guardpost.directive('guardpostCheck', ["$http", "mailgunKey", function ($http, m
             method: 'GET',
             params: { address : viewValue }
           }).success(function(data, status) {
-            ngModelCtrl.didYouMean = null;
+            ngModelCtrl.didYouMean = data.did_you_mean;
             if (data.is_valid) {
               ngModelCtrl.$setValidity('guardpostCheck', true);
             } else {
-              if (data.did_you_mean) {
-                ngModelCtrl.didYouMean = data.did_you_mean
-              }
               ngModelCtrl.$setValidity('guardpostCheck', false);
             }
           }).error(function(data, status) {
