@@ -1,0 +1,25 @@
+{
+  "name": "angular-guardpost",
+  "version": "0.0.0",
+  "homepage": "https://github.com/eyequant/angular-guardpost",
+  "authors": [
+    "Peter Le Bek"
+  ],
+  "description": "AngularJS email validation using Mailgun's free API",
+  "main": "angular_guardpost.js",
+  "keywords": [
+    "angular",
+    "js",
+    "mailgun",
+    "email",
+    "validation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
