@@ -16,3 +16,5 @@ Usage:
     guardpost.value("mailgunKey", "YOUR_API_KEY");
   </script>
 ```
+
+Use the directive parameter ```guardpostFallback``` to set the fallback validity of the field, in case the guardpost API is not available.

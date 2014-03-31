@@ -3,6 +3,9 @@ var guardpost = angular.module('guardpost', []);
 guardpost.directive('guardpostCheck', ["$http", "mailgunKey", function ($http, mailgunKey) {
   return {
     require: 'ngModel',
+    scope: {
+      guardpostFallback: '@'
+    },
     link: function (scope, element, attrs, ngModelCtrl) {
       var original;
       ngModelCtrl.didYouMean = null;
@@ -30,6 +33,10 @@ guardpost.directive('guardpostCheck', ["$http", "mailgunKey", function ($http, m
             }
           }).error(function(data, status) {
             console.log(data);
+            if (scope.guardpostFallback !== undefined) {
+              ngModelCtrl.$setValidity('guardpostCheck', scope.guardpostFallback);
+              ngModelCtrl.didYouMean = null;
+            }
           });
 
           return viewValue;
