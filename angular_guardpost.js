@@ -5,7 +5,6 @@ guardpost.directive('guardpostCheck', ["$http", "mailgunKey", function ($http, m
     require: 'ngModel',
     link: function (scope, element, attrs, ngModelCtrl) {
       var original;
-      
       ngModelCtrl.didYouMean = null;
 
       ngModelCtrl.$formatters.unshift(function(modelValue) {
@@ -20,11 +19,14 @@ guardpost.directive('guardpostCheck', ["$http", "mailgunKey", function ($http, m
             method: 'GET',
             params: { address : viewValue }
           }).success(function(data, status) {
-            ngModelCtrl.didYouMean = data.did_you_mean;
-            if (data.is_valid) {
-              ngModelCtrl.$setValidity('guardpostCheck', true);
-            } else {
-              ngModelCtrl.$setValidity('guardpostCheck', false);
+            // check if the validation still applies to the current view value
+            if (data.address === ngModelCtrl.$viewValue) {
+              ngModelCtrl.didYouMean = data.did_you_mean;
+              if (data.is_valid) {
+                ngModelCtrl.$setValidity('guardpostCheck', true);
+              } else {
+                ngModelCtrl.$setValidity('guardpostCheck', false);
+              }
             }
           }).error(function(data, status) {
             console.log(data);
